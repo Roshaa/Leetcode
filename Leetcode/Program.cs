@@ -13,6 +13,7 @@
 // Output: [1,2,1,2]
 
 
+
 public static class Solution
 {
     public static int[] Shuffle(int[] nums, int n)
@@ -20,17 +21,17 @@ public static class Solution
         int[] ans = new int[nums.Length];
 
         int pos = 1;
-        for(int i = n; i < nums.Length; i++)
+        for (int i = n; i < nums.Length; i++)
         {
             ans[pos] = nums[i];
-            pos+=2;
+            pos += 2;
         }
 
-        pos=0;
-        for(int i = 0; i < n; i++)
+        pos = 0;
+        for (int i = 0; i < n; i++)
         {
             ans[pos] = nums[i];
-            j+=2;
+            j += 2;
         }
 
 
