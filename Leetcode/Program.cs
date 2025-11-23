@@ -1,10 +1,16 @@
 ﻿var s = new Solution();
 
-//If you ever see this commit, know that I am officialy qualified for microsoft interview
 public class Solution
 {
-    public int Sum(int num1, int num2)
+    public int NumberOfEmployeesWhoMetTarget(int[] hours, int target)
     {
-        return num1 + num2;
+        int hoursMet = 0;
+
+        for (int i = 0; i < hours.Length; i++)
+        {
+            if (hours[i] >= target) hoursMet++;
+        }
+        
+        return hoursMet;
     }
 }
