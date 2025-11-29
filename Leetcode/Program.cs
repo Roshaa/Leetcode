@@ -1,19 +1,24 @@
 ﻿public class Solution
 {
-    public int CountAsterisks(string s)
+    public int[] FindIntersectionValues(int[] nums1, int[] nums2)
     {
-        while (s.Contains("|"))
+        int left = 0;
+        int right = 0;
+
+        for (int i = 0; i < nums1.Length; i++)
         {
-            int start = s.IndexOf("|");
-            int end = s.IndexOf("|", start + 1);
-            if (end == -1) break;
-            s = s.Remove(start, end - start + 1);
+            if (nums2.Contains(nums1[i])) left++;
         }
 
-        int count = 0;
-        foreach (char c in s)
-            if (c == '*') count++;
+        for (int i = 0; i < nums2.Length; i++)
+        {
+            if (nums1.Contains(nums2[i])) right++;
+        }
 
-        return count;
+        int[] ans = new int[2];
+        ans[0] = left;
+        ans[1] = right;
+
+        return ans;
     }
 }
