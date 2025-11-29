@@ -1,24 +1,19 @@
-﻿public static class Solution
+﻿public class Solution
 {
-    public static int[] Shuffle(int[] nums, int n)
+    public int CountAsterisks(string s)
     {
-        int[] ans = new int[nums.Length];
-
-        int pos = 1;
-        for(int i = n; i < nums.Length; i++)
+        while (s.Contains("|"))
         {
-            ans[pos] = nums[i];
-            pos+=2;
+            int start = s.IndexOf("|");
+            int end = s.IndexOf("|", start + 1);
+            if (end == -1) break;
+            s = s.Remove(start, end - start + 1);
         }
 
-        pos=0;
-        for(int i = 0; i < n; i++)
-        {
-            ans[pos] = nums[i];
-            j+=2;
-        }
+        int count = 0;
+        foreach (char c in s)
+            if (c == '*') count++;
 
-
-        return ans;
+        return count;
     }
 }
