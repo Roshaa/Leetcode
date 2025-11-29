@@ -1,26 +1,19 @@
-﻿Solution s = new Solution();
-
-public class Solution
+﻿public class Solution
 {
-    public int[] LeftRightDifference(int[] nums)
+    public int CountAsterisks(string s)
     {
-        int[] leftSum = new int[nums.Length];
+        while (s.Contains("|"))
+        {
+            int start = s.IndexOf("|");
+            int end = s.IndexOf("|", start + 1);
+            if (end == -1) break;
+            s = s.Remove(start, end - start + 1);
+        }
 
-        for (int i = 1; i < nums.Length; i++)
-            leftSum[i] = leftSum[i - 1] + nums[i - 1];
+        int count = 0;
+        foreach (char c in s)
+            if (c == '*') count++;
 
-
-        int[] rightSum = new int[nums.Length];
-
-        for (int i = nums.Length - 2; i >= 0; i--)
-            rightSum[i] = rightSum[i + 1] + nums[i + 1];
-
-
-        int[] answer = new int[nums.Length];
-
-        for (int i = 0; i < nums.Length; i++)
-            answer[i] = Math.Abs(leftSum[i] - rightSum[i]);
-
-        return answer;
+        return count;
     }
 }
