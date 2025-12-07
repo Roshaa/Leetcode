@@ -1,12 +1,12 @@
 ﻿public class Solution
 {
-    public int PrefixCount(string[] words, string pref)
+    public int MaxDistinct(string s)
     {
-        int counter = 0;
+        HashSet<char> hash = new HashSet<char>();
 
-        foreach (string s in words)
-            if (s.StartsWith(pref)) counter++;
+        foreach (char c in s)
+            if (!hash.Contains(c)) hash.Add(c);
 
-        return counter;
+        return hash.Count;
     }
 }
