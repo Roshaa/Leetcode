@@ -1,12 +1,16 @@
 ﻿public class Solution
 {
-    public int MaxDistinct(string s)
+    public int MinMovesToSeat(int[] seats, int[] students)
     {
-        HashSet<char> hash = new HashSet<char>();
+        seats = seats.OrderBy(n => n).ToArray();
+        students = students.OrderBy(n => n).ToArray();
 
-        foreach (char c in s)
-            if (!hash.Contains(c)) hash.Add(c);
+        int moves = 0;
+        for (int i = 0; i < seats.Length; i++)
+        {
+            moves += Math.Abs(seats[i] - students[i]);
+        }
 
-        return hash.Count;
+        return moves;
     }
 }
