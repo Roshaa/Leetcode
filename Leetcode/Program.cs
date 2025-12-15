@@ -1,16 +1,28 @@
-﻿public class Solution
+﻿var s = new Solution();
+
+var dd = s.ReversePrefix("abcdefd", 'd');
+
+
+public class Solution
 {
-    public int MinMovesToSeat(int[] seats, int[] students)
+    public string ReversePrefix(string word, char ch)
     {
-        seats = seats.OrderBy(n => n).ToArray();
-        students = students.OrderBy(n => n).ToArray();
+        int index = word.IndexOf(ch);
 
-        int moves = 0;
-        for (int i = 0; i < seats.Length; i++)
-        {
-            moves += Math.Abs(seats[i] - students[i]);
-        }
+        if (index == -1) return word;
 
-        return moves;
+        char[] array1 = new char[index + 1];
+        for (int i = index; i > -1; i--)
+            array1[index - i] = word[i];
+
+
+
+
+        string notToReplace = word.Substring(index + 1);
+
+        string ans = new string(array1) + notToReplace;
+
+        return ans;
+
     }
 }
