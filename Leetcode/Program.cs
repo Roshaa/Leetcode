@@ -1,28 +1,28 @@
-﻿var s = new Solution();
+﻿Solution s = new Solution();
 
-var dd = s.ReversePrefix("abcdefd", 'd');
 
 
 public class Solution
 {
-    public string ReversePrefix(string word, char ch)
+    public int[] ProductExceptSelf(int[] nums)
     {
-        int index = word.IndexOf(ch);
+        int LENGTH = nums.Length;
+        int[] ans = new int[LENGTH];
 
-        if (index == -1) return word;
+        int leftToRight = 1;
+        for (int i = 0; i < LENGTH; i++)
+        {
+            ans[i] = leftToRight;
+            leftToRight *= nums[i];
+        }
 
-        char[] array1 = new char[index + 1];
-        for (int i = index; i > -1; i--)
-            array1[index - i] = word[i];
-
-
-
-
-        string notToReplace = word.Substring(index + 1);
-
-        string ans = new string(array1) + notToReplace;
+        int rightToLeft = 1;
+        for (int i = LENGTH - 1; i > LENGTH; i--)
+        {
+            ans[i] *= rightToLeft;
+            rightToLeft *= nums[i];
+        }
 
         return ans;
-
     }
 }
