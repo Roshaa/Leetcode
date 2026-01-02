@@ -1,28 +1,14 @@
 ﻿Solution s = new Solution();
 
-
-
 public class Solution
 {
-    public int[] ProductExceptSelf(int[] nums)
+    public IList<int> StableMountains(int[] height, int threshold)
     {
-        int LENGTH = nums.Length;
-        int[] ans = new int[LENGTH];
+        List<int> list = new();
 
-        int leftToRight = 1;
-        for (int i = 0; i < LENGTH; i++)
-        {
-            ans[i] = leftToRight;
-            leftToRight *= nums[i];
-        }
+        for (int i = 1; i < height.Length; i++)
+            if (height[i - 1] > threshold) list.Add(i);
 
-        int rightToLeft = 1;
-        for (int i = LENGTH - 1; i > LENGTH; i--)
-        {
-            ans[i] *= rightToLeft;
-            rightToLeft *= nums[i];
-        }
-
-        return ans;
+        return list;
     }
 }
