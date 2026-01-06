@@ -2,13 +2,20 @@
 
 public class Solution
 {
-    public IList<int> StableMountains(int[] height, int threshold)
+    public int MaxProfit(int[] prices)
     {
-        List<int> list = new();
+        int maxProfit = 0;
+        int minCost = prices[0];
 
-        for (int i = 1; i < height.Length; i++)
-            if (height[i - 1] > threshold) list.Add(i);
+        for (int i = 1; i < prices.Length; i++)
+        {
+            int profit = prices[i] - minCost;
+            if (profit > 0 && profit > maxProfit) maxProfit = profit;
 
-        return list;
+            if (prices[i] < minCost)
+                minCost = prices[i];
+        }
+
+        return maxProfit;
     }
 }
