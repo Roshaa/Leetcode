@@ -1,29 +1,27 @@
 ﻿public class Solution
 {
-    public bool UniqueOccurrences(int[] arr)
+    public bool JudgeCircle(string moves)
     {
-        Dictionary<int, int> dict = new Dictionary<int, int>();
-
-        foreach (int number in arr)
+        int[] position = new int[2] { 0, 0 };
+        foreach (char move in moves)
         {
-            if (dict.ContainsKey(number))
+            switch (move)
             {
-                dict[number]++;
-            }
-            else
-            {
-                dict[number] = 1;
+                case 'L':
+                    position[0]--;
+                    break;
+                case 'R':
+                    position[0]++;
+                    break;
+                case 'U':
+                    position[1]++;
+                    break;
+                case 'D':
+                    position[1]--;
+                    break;
             }
         }
 
-        HashSet<int> seen = new HashSet<int>();
-
-        foreach (int count in dict.Values)
-        {
-            if (!seen.Add(count))
-                return true;
-        }
-
-        return false;
+        return position[0] == 0 && position[1] == 0;
     }
 }
