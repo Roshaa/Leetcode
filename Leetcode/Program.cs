@@ -1,27 +1,25 @@
 ﻿public class Solution
 {
-    public bool JudgeCircle(string moves)
+    public int CanCompleteCircuit(int[] gas, int[] cost)
     {
-        int[] position = new int[2] { 0, 0 };
-        foreach (char move in moves)
+        int totalTank = 0;
+        int currentTank = 0;
+        int start = 0;
+
+        for (int i = 0; i < gas.Length; i++)
         {
-            switch (move)
+            int diff = gas[i] - cost[i];
+
+            totalTank += diff;
+            currentTank += diff;
+
+            if (currentTank < 0)
             {
-                case 'L':
-                    position[0]--;
-                    break;
-                case 'R':
-                    position[0]++;
-                    break;
-                case 'U':
-                    position[1]++;
-                    break;
-                case 'D':
-                    position[1]--;
-                    break;
+                start = i + 1;
+                currentTank = 0;
             }
         }
 
-        return position[0] == 0 && position[1] == 0;
+        return totalTank >= 0 ? start : -1;
     }
 }
