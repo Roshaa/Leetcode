@@ -1,25 +1,20 @@
 ﻿public class Solution
 {
-    public int CanCompleteCircuit(int[] gas, int[] cost)
+    public int FindDuplicate(int[] nums)
     {
-        int totalTank = 0;
-        int currentTank = 0;
-        int start = 0;
+        HashSet<int> uniqueNumbers = new HashSet<int>();
+        int duplicate = 0;
 
-        for (int i = 0; i < gas.Length; i++)
+        for (int i = 0; i < nums.Length; i++)
         {
-            int diff = gas[i] - cost[i];
-
-            totalTank += diff;
-            currentTank += diff;
-
-            if (currentTank < 0)
+            if (uniqueNumbers.Contains(nums[i]))
             {
-                start = i + 1;
-                currentTank = 0;
+                duplicate = nums[i];
+                break;
             }
+            uniqueNumbers.Add(nums[i]);
         }
 
-        return totalTank >= 0 ? start : -1;
+        return duplicate;
     }
 }
