@@ -1,20 +1,29 @@
 ﻿public class Solution
 {
-    public int FindDuplicate(int[] nums)
+    public int LongestConsecutive(int[] nums)
     {
-        HashSet<int> uniqueNumbers = new HashSet<int>();
-        int duplicate = 0;
+        HashSet<int> numSet = new HashSet<int>(nums);
 
-        for (int i = 0; i < nums.Length; i++)
+        int longestStreak = 0;
+
+        foreach (int n in numSet)
         {
-            if (uniqueNumbers.Contains(nums[i]))
+            if (numSet.Contains(n - 1))
+                continue;
+
+            int currentStreak = 1;
+            bool hasSequence = numSet.Contains(n + 1);
+
+            while (hasSequence)
             {
-                duplicate = nums[i];
-                break;
+                currentStreak++;
+                hasSequence = numSet.Contains(n + currentStreak);
             }
-            uniqueNumbers.Add(nums[i]);
+
+            longestStreak = Math.Max(longestStreak, currentStreak);
         }
 
-        return duplicate;
+        return longestStreak;
+
     }
 }
