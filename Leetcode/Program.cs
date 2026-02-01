@@ -33,8 +33,6 @@ public class Solution
 
                 }
             }
-
-
         }
 
         return answer == int.MaxValue ? 0 : answer;
