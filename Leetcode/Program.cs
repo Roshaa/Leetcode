@@ -1,29 +1,21 @@
 ﻿public class Solution
 {
-    public int LongestConsecutive(int[] nums)
+    public IList<IList<string>> LeetCodeProblem(string[] strs)
     {
-        HashSet<int> numSet = new HashSet<int>(nums);
+        Dictionary<string, List<string>> map = new Dictionary<string, List<string>>();
 
-        int longestStreak = 0;
-
-        foreach (int n in numSet)
+        foreach (string word in strs)
         {
-            if (numSet.Contains(n - 1))
-                continue;
+            char[] chars = word.ToCharArray();
+            Array.Sort(chars);
+            string key = new string(chars);
 
-            int currentStreak = 1;
-            bool hasSequence = numSet.Contains(n + 1);
+            if (!map.ContainsKey(key))
+                map[key] = new List<string>();
 
-            while (hasSequence)
-            {
-                currentStreak++;
-                hasSequence = numSet.Contains(n + currentStreak);
-            }
-
-            longestStreak = Math.Max(longestStreak, currentStreak);
+            map[key].Add(word);
         }
 
-        return longestStreak;
-
+        return map.Values.ToList<IList<string>>();
     }
 }
