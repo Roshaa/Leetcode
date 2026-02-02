@@ -1,18 +1,15 @@
 ﻿public class Solution
 {
-    public string ReversePrefix(string s, int k)
+    public int MirrorDistance(int n)
     {
-        char[] lettersToReverse = new char[k];
+        int reversed = 0;
 
-        for (int i = 0; i < k; i++)
-            lettersToReverse[i] = s[i];
+        while (n != 0)
+        {
+            reversed = reversed * 10 + (n % 10);
+            n /= 10;
+        }
 
-        Array.Reverse(lettersToReverse);
-        char[] sArray = s.ToCharArray();
-
-        for (int i = 0; i < k; i++)
-            sArray[i] = lettersToReverse[i];
-
-        return new string(sArray);
+        return Math.Abs(reversed - n);
     }
 }
