@@ -1,40 +1,18 @@
-﻿Solution s = new Solution();
-//int result = s.Leet(7, new int[] { 2, 3, 1, 2, 4, 3 });
-int result = s.Leet(7, new int[] { 10, 2, 3 });
-//int result = s.Leet(11, new int[] { 1, 1, 1, 1, 1, 1, 1, 1 });
-
-
-public class Solution
+﻿public class Solution
 {
-    public int Leet(int target, int[] nums)
+    public string ReversePrefix(string s, int k)
     {
-        int answer = int.MaxValue;
-        int currentSum = nums[0];
-        int leftPointer = 0;
+        char[] lettersToReverse = new char[k];
 
-        if (currentSum >= target)
-            return 1;
+        for (int i = 0; i < k; i++)
+            lettersToReverse[i] = s[i];
 
-        for (int rightPointer = 1; rightPointer < nums.Length; rightPointer++)
-        {
-            currentSum += nums[rightPointer];
+        Array.Reverse(lettersToReverse);
+        char[] sArray = s.ToCharArray();
 
-            if (currentSum >= target)
-            {
-                while (currentSum >= target && leftPointer <= rightPointer)
-                {
-                    int diff = rightPointer - leftPointer + 1;
+        for (int i = 0; i < k; i++)
+            sArray[i] = lettersToReverse[i];
 
-                    if (diff < answer)
-                        answer = diff;
-
-                    currentSum -= nums[leftPointer];
-                    leftPointer++;
-
-                }
-            }
-        }
-
-        return answer == int.MaxValue ? 0 : answer;
+        return new string(sArray);
     }
 }
