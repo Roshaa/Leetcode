@@ -1,15 +1,30 @@
-﻿public class Solution
-{
-    public int MirrorDistance(int n)
-    {
-        int reversed = 0;
+﻿using System.Text;
 
-        while (n != 0)
+public class Solution
+{
+    public string RemoveOuterParentheses(string s)
+    {
+        int findOuter = 0;
+        var sb = new StringBuilder();
+
+        for (int i = 0; i < s.Length; i++)
         {
-            reversed = reversed * 10 + (n % 10);
-            n /= 10;
+            if (s[i] == '(')
+            {
+                if (findOuter > 0)
+                    sb.Append(s[i]);
+
+                findOuter++;
+            }
+            else
+            {
+                findOuter--;
+
+                if (findOuter > 0)
+                    sb.Append(s[i]);
+            }
         }
 
-        return Math.Abs(reversed - n);
+        return sb.ToString();
     }
 }
