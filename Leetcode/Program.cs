@@ -1,30 +1,25 @@
-﻿using System.Text;
-
-public class Solution
+﻿public class Solution
 {
-    public string RemoveOuterParentheses(string s)
+    public int MissingNumber(int[] nums)
     {
-        int findOuter = 0;
-        var sb = new StringBuilder();
+        Array.Sort(nums);
 
-        for (int i = 0; i < s.Length; i++)
+        for (int i = 1; i < nums.Length; i++)
         {
-            if (s[i] == '(')
+            if (nums[i] != nums[i - 1] + 1)
             {
-                if (findOuter > 0)
-                    sb.Append(s[i]);
-
-                findOuter++;
-            }
-            else
-            {
-                findOuter--;
-
-                if (findOuter > 0)
-                    sb.Append(s[i]);
+                return nums[i - 1] + 1;
             }
         }
 
-        return sb.ToString();
+        int lastNum = nums[nums.Length - 1];
+        int firstNum = nums[0];
+
+        int answer = lastNum + 1;
+
+        if (firstNum != 0)
+            return 0;
+
+        return answer;
     }
 }
