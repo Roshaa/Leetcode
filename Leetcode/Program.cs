@@ -1,19 +1,21 @@
 ﻿public class Solution
 {
-    public int FindPoisonedDuration(int[] timeSeries, int duration)
+    public char FindTheDifference(string s, string t)
     {
-        int totalDuration = timeSeries.Length * duration;
+        char[] sChars = s.ToCharArray();
+        Array.Sort(sChars);
 
-        for (int i = 1; i < timeSeries.Length; i++)
+        char[] tChars = t.ToCharArray();
+        Array.Sort(tChars);
+
+        for (int i = 0; i < sChars.Length; i++)
         {
-            int gap = timeSeries[i] - timeSeries[i - 1];
-
-            if (gap < duration)
+            if (sChars[i] != tChars[i])
             {
-                totalDuration -= (duration - gap);
+                return tChars[i];
             }
         }
 
-        return totalDuration;
+        return tChars[tChars.Length - 1];
     }
 }
