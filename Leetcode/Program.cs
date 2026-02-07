@@ -1,25 +1,19 @@
 ﻿public class Solution
 {
-    public int MissingNumber(int[] nums)
+    public int FindPoisonedDuration(int[] timeSeries, int duration)
     {
-        Array.Sort(nums);
+        int totalDuration = timeSeries.Length * duration;
 
-        for (int i = 1; i < nums.Length; i++)
+        for (int i = 1; i < timeSeries.Length; i++)
         {
-            if (nums[i] != nums[i - 1] + 1)
+            int gap = timeSeries[i] - timeSeries[i - 1];
+
+            if (gap < duration)
             {
-                return nums[i - 1] + 1;
+                totalDuration -= (duration - gap);
             }
         }
 
-        int lastNum = nums[nums.Length - 1];
-        int firstNum = nums[0];
-
-        int answer = lastNum + 1;
-
-        if (firstNum != 0)
-            return 0;
-
-        return answer;
+        return totalDuration;
     }
 }
