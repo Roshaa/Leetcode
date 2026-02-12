@@ -1,21 +1,27 @@
 ﻿public class Solution
 {
-    public char FindTheDifference(string s, string t)
+    public int IslandPerimeter(int[][] grid)
     {
-        char[] sChars = s.ToCharArray();
-        Array.Sort(sChars);
-
-        char[] tChars = t.ToCharArray();
-        Array.Sort(tChars);
-
-        for (int i = 0; i < sChars.Length; i++)
         {
-            if (sChars[i] != tChars[i])
-            {
-                return tChars[i];
-            }
-        }
+            int perimeter = 0;
 
-        return tChars[tChars.Length - 1];
+            for (int i = 0; i < grid.Length; i++)
+            {
+                for (int j = 0; j < grid[i].Length; j++)
+                {
+                    bool isLand = grid[i][j] == 1;
+                    perimeter += grid[i][j] * 4;
+
+                    if (isLand && j > 0)
+                        perimeter -= grid[i][j - 1] * 2;
+
+                    if (isLand && i < grid.Length - 1)
+                        perimeter -= grid[i + 1][j] * 2;
+
+                }
+            }
+
+            return perimeter;
+        }
     }
 }
